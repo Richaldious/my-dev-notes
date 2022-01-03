@@ -1,0 +1,12 @@
+Airflow as a basement in what is called Direct Acyclic Graph, what basically mean,
+it contains graths with direct connected edges and does not contain any loop or cycles hence the term Acyclic.
+
+The acyclic is a very important part, given that it prevents us from running into circular dependecies between tasks.
+
+Executing a pipeline
+
+1. For each open (= uncompleted) task in the graph, do the following:
+    1.1 For each edge pointing, check if the “upstream” task on the other end of the edge has been completed.
+    1.2 If all upstream tasks have been completed, add the task under consideration to a queue of tasks to be executed.
+2. Execute the tasks in the execution queue, marking them completed once they finish performing their work.
+3. Jump back to step 1 and repeat until all tasks in the graph have been completed.
